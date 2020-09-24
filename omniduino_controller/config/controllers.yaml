@@ -1,0 +1,29 @@
+omniduino:
+  joint_state_controller:
+    type: joint_state_controller/JointStateController
+    publish_rate: 50
+
+  wheel1_controller:
+    type: effort_controllers/JointVelocityController
+    joint: motor1_shaft_joint
+    pid: {p: 1.0, i: 0.0, d: 0.0001}
+
+  wheel2_controller:
+    type: effort_controllers/JointVelocityController
+    joint: motor2_shaft_joint
+    pid: {p: 1.0, i: 0.0, d: 0.0001}
+
+  wheel3_controller:
+    type: effort_controllers/JointVelocityController
+    joint: motor3_shaft_joint
+    pid: {p: 1.0, i: 0.0, d: 0.0001}
+
+  wheel4_controller:
+    type: effort_controllers/JointVelocityController
+    joint: motor4_shaft_joint
+    pid: {p: 1.0, i: 0.0, d: 0.0001}
+
+  camera_angle_controller:
+    type: effort_controllers/JointPositionController
+    joint: camera_base_link_joint
+    pid: {p: 1.0, i: 0.0, d: 0.0001}
