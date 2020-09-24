@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<robot name="N20GearedMotor" xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:macro name="box_inertial" params="mass height width depth">
+	<mass value="${mass}"/>
+	<inertia ixx="${(mass*(width*width+depth*depth))/12}" ixy="0" ixz="0"
+			 iyy="${(mass*(height*height+depth*depth))/12}" iyz="0"
+			 izz="${(mass*(height*height+width*width))/12}" />
+  </xacro:macro>
+  <xacro:macro name="cylinder_inertial" params="mass radius length">
+	<mass value="${mass}"/>
+	<inertia ixx="${((radius*radius)/4 + (length*length)/12)*mass}" ixy="0" ixz="0"
+			 iyy="${((radius*radius)/4 + (length*length)/12)*mass}" iyz="0"
+			 izz="${(mass*radius*radius)/2}" />
+  </xacro:macro>
+
+  <xacro:macro name="N20_motor" params="prefix parent_link joint_xyz joint_rpy">
+    <link name="${prefix}_link" >
+      <visual><geometry><box size="0.030 0.017 0.012" /></geometry></visual>
+      <collision><geometry><box size="0.030 0.017 0.012" /></geometry></collision>
+      <inertial><xacro:box_inertial mass="0.0147" height="0.030" width="0.017" depth="0.012"/></inertial>
+    </link>
+    <joint name="${prefix}_joint" type="fixed">
+      <parent link="${parent_link}" />
+      <child  link="${prefix}_link" />
+      <origin xyz="${joint_xyz}" rpy="${joint_rpy}" />
+    </joint>
+    <link name="${prefix}_shaft_link">
+      <visual><geometry><cylinder radius="0.00125" length="0.014" /></geometry></visual>
+      <inertial><xacro:cylinder_inertial mass="0.001" radius="0.00125" length="0.014" /></inertial>
+    </link>
+    <joint name="${prefix}_shaft_joint" type="continuous">
+      <parent link="${prefix}_link" />
+      <child  link="${prefix}_shaft_link" />
+      <origin xyz="0.022 0 0" rpy="0 ${pi/2} 0"/>
+      <axis xyz="0 0 1"/>
+      <dynamics damping="0.001" friction="0.0" />
+    </joint>
+    <transmission name="${prefix}_shaft_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${prefix}_shaft_joint">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="${prefix}_shaft_motor">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+  </xacro:macro>
+</robot>

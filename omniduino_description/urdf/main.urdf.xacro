@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:macro name="box_inertial" params="mass height width depth">
+  <mass value="${mass}"/>
+  <inertia  ixx="${(mass*(width*width+depth*depth))/12}" ixy="0" ixz="0"
+            iyy="${(mass*(height*height+depth*depth))/12}" iyz="0"
+            izz="${(mass*(height*height+width*width))/12}" />
+  </xacro:macro>
+
+  <link name="base_plate_link">
+    <visual><geometry><box size="0.062 0.114 0.005" /></geometry><material name="black"/></visual>
+    <collision><geometry><box size="0.062 0.114 0.005" /></geometry></collision>
+    <inertial><xacro:box_inertial mass="0.030" height="0.062" width="0.114" depth="0.005"/></inertial>
+  </link>
+  <joint name="base_plate_link" type="fixed">
+    <parent link="base_link" />
+    <child  link="base_plate_link" />
+    <origin xyz="0 0 0.02" />
+  </joint>
+  <gazebo reference="base_plate_link">
+    <material>Gazebo/Black</material>
+  </gazebo>
+
+  <link name="battery_link">
+    <visual><geometry><box size="0.088 0.031 0.022" /></geometry><material name="black"/></visual>
+    <collision><geometry><box size="0.088 0.031 0.022" /></geometry></collision>
+    <inertial><xacro:box_inertial mass="0.200" height="0.088" width="0.031" depth="0.022"/></inertial>
+  </link>
+  <joint name="battery_link_joint" type="fixed">
+    <parent link="base_plate_link" />
+    <child  link="battery_link" />
+    <origin xyz="0 0 0.0175" />
+  </joint>
+  <gazebo reference="battery_link">
+    <material>Gazebo/Black</material>
+  </gazebo>
+
+  <link name="controll_borad_link">
+    <visual><geometry><box size="0.114 0.114 0.01" /></geometry><material name="black"/></visual>
+    <collision><geometry><box size="0.114 0.114 0.01" /></geometry></collision>
+    <inertial><xacro:box_inertial mass="0.050" height="0.114" width="0.114" depth="0.01"/></inertial>
+  </link>
+  <joint name="controll_board_link_joint" type="fixed">
+    <parent link="battery_link" />
+    <child  link="controll_borad_link" />
+    <origin xyz="0 0 0.02" />
+  </joint>
+  <gazebo reference="controll_borad_link">
+    <material>Gazebo/Black</material>
+  </gazebo>
+
+  <link name="servo_link">
+    <visual><geometry><box size="0.0325 0.0273 0.012" /></geometry><material name="black"/></visual>
+    <collision><geometry><box size="0.0325 0.0273 0.012" /></geometry></collision>
+    <inertial><xacro:box_inertial mass="0.035" height="0.0325" width="0.0273" depth="0.012"/></inertial>
+  </link>
+  <joint name="servo_link_joint" type="fixed">
+    <parent link="controll_borad_link" />
+    <child  link="servo_link" />
+    <origin xyz="0 0.01 0.011" />
+  </joint>
+  <gazebo reference="servo_link">
+    <material>Gazebo/Black</material>
+  </gazebo>
+
+  <link name="camera_base_link"/>
+  <link name="camera_link">
+    <visual><geometry><box size="0.035 0.030 0.035" /></geometry><material name="white"/></visual>
+    <collision><geometry><box size="0.035 0.030 0.035" /></geometry></collision>
+    <inertial><xacro:box_inertial mass="0.020" height="0.035" width="0.030" depth="0.035"/></inertial>
+  </link>
+  <joint name="camera_base_link_joint" type="revolute">
+    <parent link="servo_link" />
+    <child  link="camera_base_link" />
+    <origin xyz="0 0.005 0" />
+    <axis xyz="1 0 0" />
+    <limit lower="${-20.0/180.0*pi}" upper="${20.0/180.0*pi}" effort="0.2" velocity="5" />
+    <dynamics damping="0.0" friction="0.0" />
+  </joint>
+  <transmission name="camera_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="camera_base_link_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="camera_servo_motor">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanismReduction>1</mechanismReduction>
+    </actuator>
+  </transmission>
+  <joint name="camera_link_joint" type="fixed">
+    <parent link="camera_base_link" />
+    <child  link="camera_link" />
+    <origin xyz="0 0 0.035" />
+    <dynamics damping="0.0" friction="0.0" />
+  </joint>
+  
+</robot>
