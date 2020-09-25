@@ -14,7 +14,7 @@
         <cylinder radius="0.005" length="0.024" />
       </geometry><material name="black"/></visual>
       <collision><geometry>
-        <cylinder radius="0.005" length="0.024" />
+        <cylinder radius="0.005" length="0.01" />
       </geometry></collision>
       <inertial><xacro:cylinder_inertial mass="0.01" radius="0.009" length="0.024" /></inertial>
     </link>
@@ -31,6 +31,7 @@
       <visual><geometry>
         <cylinder radius="0.017" length="0.005" />
       </geometry><material name="black"/></visual>
+      <inertial><xacro:cylinder_inertial mass="0.0001" radius="0.017" length="0.0381" /></inertial>
     </link>
     <joint name="${prefix}_${inout}_frame" type="fixed">
       <parent link="${prefix}_shaft" />
