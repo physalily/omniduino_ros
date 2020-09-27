@@ -2,12 +2,12 @@
     <!-- args -->
     <arg name="model" default="$(find omniduino_description)/robots/omniduino.urdf"/>
     <arg name="gui" default="true" />
-    <arg name="rvizconfig" default="$(find urdf_tutorial)/rviz/urdf.rviz" />
+    <arg name="rvizconfig" default="$(find omniduino_description)/config/rviz.rviz" />
     
     <!-- load robot -->
     <param name="robot_description" command="xacro --inorder '$(find omniduino_description)/robots/omniduino.urdf.xacro'" />
     <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
-    <node name="robot_state_publisehr" pkg="robot_state_publisher" type="state_publisher" />
+    <node name="robot_state_publisehr" pkg="robot_state_publisher" type="robot_state_publisher" />
     
     <!-- load displays -->
     <param name="use_gui" value="$(arg gui)" />
