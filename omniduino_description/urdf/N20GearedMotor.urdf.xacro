@@ -26,6 +26,7 @@
     </joint>
     <link name="${prefix}_shaft_link">
       <visual><geometry><cylinder radius="0.00125" length="0.014" /></geometry></visual>
+      <collision><geometry><cylinder radius="0.00125" length="0.014" /></geometry></collision>
       <inertial><xacro:cylinder_inertial mass="0.001" radius="0.00125" length="0.014" /></inertial>
     </link>
     <joint name="${prefix}_shaft_joint" type="continuous">
@@ -38,10 +39,10 @@
     <transmission name="${prefix}_shaft_trans">
       <type>transmission_interface/SimpleTransmission</type>
       <joint name="${prefix}_shaft_joint">
-        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
       </joint>
       <actuator name="${prefix}_shaft_motor">
-        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
         <mechanicalReduction>1</mechanicalReduction>
       </actuator>
     </transmission>
