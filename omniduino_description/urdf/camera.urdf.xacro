@@ -4,7 +4,7 @@
     <joint name="${prefix}_joint" type="fixed">
       <parent link="${parent}"/>
       <child  link="${prefix}_link"/>
-      <origin xyz="${xyz}" rpy="${radians(-90)} 0 ${radians(-90)}"/>
+      <origin xyz="${xyz}" rpy="${radians(-90)} 0 0"/>
     </joint>
     <link name="${prefix}_link"/>
     <gazebo reference="${prefix}_link">
