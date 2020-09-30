@@ -23,5 +23,17 @@
 
 
   <node name="spawn_omniduino_model" pkg="gazebo_ros" type="spawn_model" args="-x 0 -y 0 -z 0.25  -unpause -urdf -param robot_description -model omniduino" respawn="false" output="screen" />
-  
+  <node name="omniduino_twist" pkg="omniduino_controller" type="omniduino_twist" output="screen">
+    <param name="gain" value="20.5"/>
+    <param name="dWheel2Wheel_wid" value="0.08"/>
+    <param name="dWheel2Wheel_hei" value="0.08"/>
+    <param name="f_l" value="0"/>
+    <param name="r_l" value="1"/>
+    <param name="f_r" value="2"/>
+    <param name="r_r" value="3"/>
+    <remap from="wheel0" to="/omniduino/wheel1_controller/command" />
+    <remap from="wheel1" to="/omniduino/wheel2_controller/command" />
+    <remap from="wheel2" to="/omniduino/wheel3_controller/command" />
+    <remap from="wheel3" to="/omniduino/wheel4_controller/command" />
+  </node> 
 </launch>
