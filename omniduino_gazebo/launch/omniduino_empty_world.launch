@@ -17,6 +17,7 @@
     <arg name="world_name" value="$(arg world_name)"/>
   </include>
   <include file="$(find omniduino_controller)/launch/omniduino_control.launch" />
+  <include file="$(find omniduino_controller)/launch/mouse_ctrl.launch" />
 
 
   <param name="robot_description" command="$(find xacro)/xacro '$(find omniduino_description)/robots/$(arg robot).urdf.xacro'" />
@@ -27,10 +28,10 @@
     <param name="gain" value="20.5"/>
     <param name="dWheel2Wheel_wid" value="0.08"/>
     <param name="dWheel2Wheel_hei" value="0.08"/>
-    <param name="f_l" value="0"/>
-    <param name="r_l" value="1"/>
-    <param name="f_r" value="2"/>
-    <param name="r_r" value="3"/>
+    <param name="f_l" value="1"/>
+    <param name="r_l" value="0"/>
+    <param name="f_r" value="3"/>
+    <param name="r_r" value="2"/>
     <remap from="wheel0" to="/omniduino/wheel1_controller/command" />
     <remap from="wheel1" to="/omniduino/wheel2_controller/command" />
     <remap from="wheel2" to="/omniduino/wheel3_controller/command" />
