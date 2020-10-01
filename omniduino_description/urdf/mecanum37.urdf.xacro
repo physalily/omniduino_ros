@@ -13,9 +13,6 @@
       <visual><geometry>
         <cylinder radius="0.005" length="0.024" />
       </geometry><material name="black"/></visual>
-      <collision><geometry>
-        <cylinder radius="0.005" length="0.01" />
-      </geometry></collision>
       <inertial><xacro:cylinder_inertial mass="0.01" radius="0.009" length="0.024" /></inertial>
     </link>
     <joint name="${prefix}_shaft_joint" type="fixed">
@@ -80,8 +77,8 @@
 
   <xacro:macro name="mecanum_wheel" params="prefix parent_link rot joint_xyz joint_rpy">
     <xacro:wheel_shaft prefix="${prefix}" parent_link="${parent_link}" joint_xyz="${joint_xyz}" joint_rpy="${joint_rpy}"/>
-    <xacro:wheel_frame prefix="${prefix}" inout="inside"  to_shaft_length=" 0.0135" />
-    <xacro:wheel_frame prefix="${prefix}" inout="outside" to_shaft_length="-0.0135" />
+    <xacro:wheel_frame prefix="${prefix}" inout="inside"  to_shaft_length=" 0.01" />
+    <xacro:wheel_frame prefix="${prefix}" inout="outside" to_shaft_length="-0.01" />
     <xacro:barrels prefix="${prefix}" rot="${rot}" />
   </xacro:macro>
   

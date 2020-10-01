@@ -11,23 +11,23 @@
 
   <xacro:macro name="wheel_module" params="number rot parent_link joint_xyz joint_rpy">
     <xacro:N20_motor prefix="motor${number}" parent_link="${parent_link}" joint_xyz="${joint_xyz}" joint_rpy="${joint_rpy}"/>
-    <xacro:mecanum_wheel prefix="wheel${number}" parent_link="motor${number}_shaft_link" rot="${rot}" joint_xyz="0 0 0.012" joint_rpy="0 0 0"/>
+    <xacro:mecanum_wheel prefix="wheel${number}" parent_link="motor${number}_shaft_link" rot="${rot}" joint_xyz="0 0 0.008" joint_rpy="0 0 0"/>
   </xacro:macro>
 
-  <xacro:wheel_module number="1" rot=" 1" parent_link="base_plate_link" joint_xyz=" 0.0155  0.038 0.00825" joint_rpy="0 0 0" />
-  <xacro:wheel_module number="2" rot="-1" parent_link="base_plate_link" joint_xyz=" 0.0155 -0.038 0.00825" joint_rpy="0 0 0" />
-  <xacro:wheel_module number="3" rot="-1" parent_link="base_plate_link" joint_xyz="-0.0155  0.038 0.00825" joint_rpy="0 0 ${pi}" />
-  <xacro:wheel_module number="4" rot=" 1" parent_link="base_plate_link" joint_xyz="-0.0155 -0.038 0.00825" joint_rpy="0 0 ${pi}" />
+  <xacro:wheel_module number="1" rot="-1" parent_link="base_plate_link" joint_xyz=" 0.038  0.0155 0.00825" joint_rpy="0 0 ${ pi/2}" />
+  <xacro:wheel_module number="2" rot=" 1" parent_link="base_plate_link" joint_xyz="-0.038  0.0155 0.00825" joint_rpy="0 0 ${ pi/2}" />
+  <xacro:wheel_module number="3" rot=" 1" parent_link="base_plate_link" joint_xyz=" 0.038 -0.0155 0.00825" joint_rpy="0 0 ${-pi/2}" />
+  <xacro:wheel_module number="4" rot="-1" parent_link="base_plate_link" joint_xyz="-0.038 -0.0155 0.00825" joint_rpy="0 0 ${-pi/2}" />
 
-  <xacro:gazebo_light_sensor name="front"  parent="controll_borad_link" xyz=" 0     0.05 0" direction="0" />
-  <xacro:gazebo_light_sensor name="fleft"  parent="controll_borad_link" xyz="-0.05  0.05 0" direction="${ pi/4}" />
-  <xacro:gazebo_light_sensor name="fright" parent="controll_borad_link" xyz=" 0.05  0.05 0" direction="${-pi/4}" />
-  <xacro:gazebo_light_sensor name="rleft"  parent="controll_borad_link" xyz="-0.05 -0.05 0" direction="${ pi/4*3}" />
-  <xacro:gazebo_light_sensor name="rright" parent="controll_borad_link" xyz=" 0.05 -0.05 0" direction="${-pi/4*3}" />
+  <xacro:gazebo_light_sensor name="front"  parent="controll_borad_link" xyz=" 0.05     0  0" direction="${-pi/2}" />
+  <xacro:gazebo_light_sensor name="fleft"  parent="controll_borad_link" xyz=" 0.05  0.05  0" direction="${-pi/4}" />
+  <xacro:gazebo_light_sensor name="fright" parent="controll_borad_link" xyz=" 0.05 -0.05  0" direction="${-pi/4*3}" />
+  <xacro:gazebo_light_sensor name="rleft"  parent="controll_borad_link" xyz="-0.05  0.05  0" direction="${ pi/4}" />
+  <xacro:gazebo_light_sensor name="rright" parent="controll_borad_link" xyz="-0.05 -0.05  0" direction="${ pi/4*3}" />
 
   <xacro:imu_macro parent="controll_borad_link" prefix="imu" xyz="0 0 0" />
 
-  <xacro:camera_macro parent="camera_link" prefix="camera1" xyz="0 0.015 0" />
+  <xacro:camera_macro parent="camera_link" prefix="camera1" xyz="0.015 0 0" />
 
   <gazebo>
     <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
