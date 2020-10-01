@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:macro name="sus_module" params="prefix parent child xyz rpy">
+    <link name="${prefix}_link">
+      <inertial>
+        <mass value="0.010" />
+        <inertia ixx="0.00001" ixy="0.0" ixz="0.0" iyy="0.00001" iyz="0.0" izz="0.00001" />
+      </inertial>
+    </link>
+    <joint name="${prefix}_joint" type="prismatic">
+      <parent link="${parent}" />
+      <child  link="${prefix}_link" />
+      <limit lower="-0.001" upper="0.001" effort="100" velocity="1.0" />
+      <axis xyz="0 0 1" />
+      <origin xyz="${xyz}" rpy="${rpy}" />
+      <dynamics damping="0.001" />
+    </joint>
+    <transmission name="${prefix}_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${prefix}_joint">
+          <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="${prefix}_motor">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        <mechanismReduction>1</mechanismReduction>
+      </actuator>
+    </transmission>
+    <gazebo reference="${prefix}_joint">
+      <kp>50000</kp>
+      <kd>500</kd>
+    </gazebo>
+  </xacro:macro>
+</robot>

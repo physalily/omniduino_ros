@@ -7,10 +7,12 @@
   <xacro:include filename="$(find omniduino_description)/urdf/light_sensor.urdf.xacro" />
   <xacro:include filename="$(find omniduino_description)/urdf/camera.urdf.xacro" />
   <xacro:include filename="$(find omniduino_description)/urdf/imu.urdf.xacro" />
+  <xacro:include filename="$(find omniduino_description)/urdf/sus.urdf.xacro" />
   <xacro:include filename="$(find omniduino_description)/urdf/main.urdf.xacro" />
 
   <xacro:macro name="wheel_module" params="number rot parent_link joint_xyz joint_rpy">
-    <xacro:N20_motor prefix="motor${number}" parent_link="${parent_link}" joint_xyz="${joint_xyz}" joint_rpy="${joint_rpy}"/>
+    <xacro:sus_module prefix="sus${number}" parent="${parent_link}" child="" xyz="${joint_xyz}" rpy="${joint_rpy}"/>
+    <xacro:N20_motor prefix="motor${number}" parent_link="sus${number}_link" joint_xyz="0 0 0" joint_rpy="0 0 0"/>
     <xacro:mecanum_wheel prefix="wheel${number}" parent_link="motor${number}_shaft_link" rot="${rot}" joint_xyz="0 0 0.008" joint_rpy="0 0 0"/>
   </xacro:macro>
 
