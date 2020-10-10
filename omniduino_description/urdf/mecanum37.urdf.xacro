@@ -64,6 +64,16 @@
       <kp value="50000" />
       <kd value="100" />
     </gazebo>
+    <link name="${prefix}_rotation_checker${num}">
+      <visual><geometry>
+        <cylinder radius="0.001" length="0.024" />
+      </geometry></visual>
+    </link>
+    <joint name="${prefix}_rotate_chk_joint${num}" type="fixed">
+      <parent link="${prefix}_barrel${num}_link" />
+      <child  link="${prefix}_rotation_checker${num}" />
+      <origin xyz="0 0 0.01" rpy="0 0 0" />
+    </joint>
   </xacro:macro>
 
   <xacro:macro name="barrels" params="prefix rot" >
