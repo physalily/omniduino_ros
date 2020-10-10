@@ -37,4 +37,11 @@
     <remap from="wheel2" to="/omniduino/wheel3_controller/command" />
     <remap from="wheel3" to="/omniduino/wheel4_controller/command" />
   </node> 
+  <node name="omniduino_lift" pkg="omniduino_controller" type="omniduino_lift" respawn="false" output="screen">
+    <remap from="sus0" to="/omniduino/sus_controller0/command" />
+    <remap from="sus1" to="/omniduino/sus_controller1/command" />
+    <remap from="sus2" to="/omniduino/sus_controller2/command" />
+    <remap from="sus3" to="/omniduino/sus_controller3/command" />
+  </node>
+
 </launch>

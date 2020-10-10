@@ -3,7 +3,9 @@
     <rosparam file="$(find omniduino_controller)/config/controllers.yaml" command="load" />
 
     <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" ns="/omniduino"
-        args="joint_state_controller camera_angle_controller wheel1_controller wheel2_controller wheel3_controller wheel4_controller" />
+        args="joint_state_controller camera_angle_controller 
+              wheel1_controller wheel2_controller wheel3_controller wheel4_controller
+              sus_controller0 sus_controller1 sus_controller2 sus_controller3" />
 
     <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen" />
 

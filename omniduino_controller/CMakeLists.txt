@@ -135,6 +135,7 @@ include_directories(
 ## The recommended prefix ensures that target names across packages don't collide
 # add_executable(${PROJECT_NAME}_node src/omniduino_controller_node.cpp)
 add_executable(omniduino_twist src/omniduino_twist.cpp)
+add_executable(omniduino_lift src/omniduino_lift.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -151,6 +152,9 @@ add_executable(omniduino_twist src/omniduino_twist.cpp)
 #   ${catkin_LIBRARIES}
 # )
 target_link_libraries(omniduino_twist
+  ${catkin_LIBRARIES}
+)
+target_link_libraries(omniduino_lift
   ${catkin_LIBRARIES}
 )
 
