@@ -10,10 +10,10 @@
     <joint name="${prefix}_joint" type="prismatic">
       <parent link="${parent}" />
       <child  link="${prefix}_link" />
-      <limit lower="-0.001" upper="0.001" effort="100" velocity="1.0" />
+      <limit lower="-0.002" upper="0.002" effort="100" velocity="1.0" />
       <axis xyz="0 0 1" />
       <origin xyz="${xyz}" rpy="${rpy}" />
-      <dynamics damping="0.001" />
+      <dynamics damping="0.01" />
     </joint>
     <transmission name="${prefix}_trans">
       <type>transmission_interface/SimpleTransmission</type>

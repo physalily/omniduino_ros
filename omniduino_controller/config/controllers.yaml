@@ -6,42 +6,42 @@ omniduino:
   wheel1_controller:
     type: velocity_controllers/JointVelocityController
     joint: motor1_shaft_joint
-    pid: {p: 1.0, i: 0.0, d: 0.0001}
+    pid: {p: 0.1, i: 0.0, d: 0.0001}
 
   wheel2_controller:
     type: velocity_controllers/JointVelocityController
     joint: motor2_shaft_joint
-    pid: {p: 1.0, i: 0.0, d: 0.0001}
+    pid: {p: 0.1, i: 0.0, d: 0.0001}
 
   wheel3_controller:
     type: velocity_controllers/JointVelocityController
     joint: motor3_shaft_joint
-    pid: {p: 1.0, i: 0.0, d: 0.0001}
+    pid: {p: 0.1, i: 0.0, d: 0.0001}
 
   wheel4_controller:
     type: velocity_controllers/JointVelocityController
     joint: motor4_shaft_joint
-    pid: {p: 1.0, i: 0.0, d: 0.0001}
+    pid: {p: 0.1, i: 0.0, d: 0.0001}
 
   sus_controller0:
     type: effort_controllers/JointPositionController
     joint: sus1_joint
-    pid: {p: 10, i: 100.0, d: 100, i_clamp: 10.0}
+    pid: {p: 100, i: 100.0, d: 100, i_clamp: 10.0}
       
   sus_controller1:
     type: effort_controllers/JointPositionController
     joint: sus2_joint
-    pid: {p: 10, i: 100.0, d: 100, i_clamp: 10.0}
+    pid: {p: 100, i: 100.0, d: 100, i_clamp: 10.0}
 
   sus_controller2:
     type: effort_controllers/JointPositionController
     joint: sus3_joint
-    pid: {p: 10, i: 100.0, d: 100, i_clamp: 10.0}
+    pid: {p: 100, i: 100.0, d: 100, i_clamp: 10.0}
 
   sus_controller3:
     type: effort_controllers/JointPositionController
     joint: sus4_joint
-    pid: {p: 10, i: 100.0, d: 100, i_clamp: 10.0}
+    pid: {p: 100, i: 100.0, d: 100, i_clamp: 10.0}
 
   camera_angle_controller:
     type: effort_controllers/JointPositionController

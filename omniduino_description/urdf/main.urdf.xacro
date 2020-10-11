@@ -15,7 +15,7 @@
   <joint name="base_plate_link" type="fixed">
     <parent link="base_link" />
     <child  link="base_plate_link" />
-    <origin xyz="0 0 0.02" />
+    <origin xyz="0 0 0.01" />
   </joint>
   <gazebo reference="base_plate_link">
     <material>Gazebo/Black</material>
@@ -24,7 +24,7 @@
   <link name="battery_link">
     <visual><geometry><box size="0.031 0.088 0.022" /></geometry><material name="black"/></visual>
     <collision><geometry><box size="0.031 0.088 0.022" /></geometry></collision>
-    <inertial><xacro:box_inertial mass="0.200" height="0.031" width="0.088" depth="0.022"/></inertial>
+    <inertial><xacro:box_inertial mass="0.600" height="0.031" width="0.088" depth="0.022"/></inertial>
   </link>
   <joint name="battery_link_joint" type="fixed">
     <parent link="base_plate_link" />
@@ -75,7 +75,7 @@
     <origin xyz="0.005 0 0" />
     <axis xyz="0 1 0" />
     <limit lower="${-20.0/180.0*pi}" upper="${20.0/180.0*pi}" effort="0.2" velocity="5" />
-    <dynamics damping="0.0" friction="0.0" />
+    <dynamics damping="0.01" friction="0.0" />
   </joint>
   <transmission name="camera_trans">
     <type>transmission_interface/SimpleTransmission</type>
