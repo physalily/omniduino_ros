@@ -19,7 +19,7 @@
       <parent link="${parent_link}" />
       <child  link="${prefix}_shaft" />
       <origin xyz="${joint_xyz}" rpy="${joint_rpy}" />
-      <dynamics damping="0.001" friction="0.0" />
+      <dynamics damping="0.00001" friction="0.0" />
     </joint>
   </xacro:macro>
 
@@ -48,14 +48,14 @@
       <collision><geometry>
           <mesh filename="package://omniduino_description/meshes/ffbarrel.stl" />
       </geometry></collision>
-      <inertial><xacro:cylinder_inertial mass="0.01225" radius="0.00956" length="0.0381" /></inertial>
+      <inertial><xacro:cylinder_inertial mass="0.01225" radius="0.01" length="0.0261" /></inertial>
     </link>
     <joint name="${prefix}_barrel${num}_joint" type="continuous">
       <parent link="${prefix}_shaft"/>
       <child link="${prefix}_barrel${num}_link"/>
       <origin rpy="0 ${pi/4*rot} ${radians(dir)+pi/2}" xyz="${0.012975*cos(radians(dir))} ${0.012975*sin(radians(dir))} 0"/>
       <axis xyz="1 0 0"/>
-      <dynamics damping="0.001"  friction="0.0"/>
+      <dynamics damping="0.00001"  friction="0.0"/>
     </joint>
     <gazebo reference="${prefix}_barrel${num}_link">
       <material>Gazebo/Green</material>

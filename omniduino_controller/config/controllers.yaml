@@ -6,22 +6,22 @@ omniduino:
   wheel1_controller:
     type: effort_controllers/JointVelocityController
     joint: motor1_shaft_joint
-    pid: {p: 0.01, i: 0.0, d: 0.0, i_clamp: 1.0, antiwindup: true}
+    pid: {p: 0.04, i: 0.0, d: 0.0, i_clamp: 1.0, antiwindup: true}
 
   wheel2_controller:
     type: effort_controllers/JointVelocityController
     joint: motor2_shaft_joint
-    pid: {p: 0.01, i: 0.0, d: 0.0, i_clamp: 1.0, antiwindup: true}
+    pid: {p: 0.04, i: 0.0, d: 0.0, i_clamp: 1.0, antiwindup: true}
 
   wheel3_controller:
     type: effort_controllers/JointVelocityController
     joint: motor3_shaft_joint
-    pid: {p: 0.01, i: 0.0, d: 0.0, i_clamp: 1.0, antiwindup: true}
+    pid: {p: 0.04, i: 0.0, d: 0.0, i_clamp: 1.0, antiwindup: true}
 
   wheel4_controller:
     type: effort_controllers/JointVelocityController
     joint: motor4_shaft_joint
-    pid: {p: 0.01, i: 0.0, d: 0.0, i_clamp: 1.0, antiwindup: true}
+    pid: {p: 0.04, i: 0.0, d: 0.0, i_clamp: 1.0, antiwindup: true}
 
   sus_controller0:
     type: effort_controllers/JointPositionController
