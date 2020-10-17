@@ -9,6 +9,7 @@
   <xacro:include filename="$(find omniduino_description)/urdf/imu.urdf.xacro" />
   <xacro:include filename="$(find omniduino_description)/urdf/sus.urdf.xacro" />
   <xacro:include filename="$(find omniduino_description)/urdf/main.urdf.xacro" />
+  <xacro:include filename="$(find omniduino_description)/urdf/lidar_camsensex1.urdf.xacro" />
 
   <xacro:macro name="wheel_module" params="number rot parent_link joint_xyz joint_rpy">
     <xacro:sus_module prefix="sus${number}" parent="${parent_link}" child="" xyz="${joint_xyz}" rpy="${joint_rpy}"/>
@@ -31,6 +32,7 @@
 
   <xacro:camera_macro parent="camera_link" prefix="camera1" xyz="0.015 0 0" />
 
+  <xacro:laser_macro parent="camera_link" prefix="lidar1" xyz="0.01 0 0.035" />
   <gazebo>
     <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
       <robotNamespace>/omniduino</robotNamespace>
